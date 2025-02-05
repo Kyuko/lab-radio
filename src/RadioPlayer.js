@@ -29,8 +29,10 @@ const RadioPlayer = () => {
     audioRef.current.src = currentStation;
     if (isPlaying) {
       audioRef.current.play();
-    }
-  }, [currentStation]);
+    } else {
+        audioRef.current.pause();
+      }
+    }, [currentStation, isPlaying]);
 
   useEffect(() => {
     setBrowserInfo(navigator.userAgent);
@@ -129,7 +131,10 @@ const RadioPlayer = () => {
       {location && (
         <div className="location-info">
           <p>Lokalizacja: {location.latitude}, {location.longitude}</p>
+          <p>{consentGiven ? 'Zgoda została udzielona.' : 'Nie udzielono zgody.'}</p>
         </div>
+
+        
       )}
     </div>
   );
